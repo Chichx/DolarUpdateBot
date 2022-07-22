@@ -16,16 +16,31 @@ const client = new Twitter({
 })
 
 
+
 app.set('port', port)
 
-app.get('/', (req, res) => {
+app.get('/', async function(req, res) {
+    const data  = await getDolarInfo()
+    const data2  = await getDolarOficialInfo()
+    const data3  = await getDolarContadoliquiInfo()
+    const data4  = await getDolarBolsarInfo()
+    const data5  = await getDolarPromedioInfo()
+    const data6  = await getRiesgoPaisInfo()
+    const data7  = await getDolarTurista()
                 res.send(`
                 <head>
                     <title>Chicho Dolar Bot - v1.0</title>
                 <head>
                 <body>
                     <a href="https://twitter.com/dolarupdate">Chicho Dolar Bot</a> - v<b>1.0</b><br>
-                    <a>Creado por </a><a href="https://github.com/Chichx">Chicho</a>
+                    <a>Creado por </a><a href="https://github.com/Chichx">Chicho</a><br><br><br>
+                    <a><b>Dolar blue:</b> <br>Compra: ${data.compra} <br>Venta: ${data.venta} <br>Fecha: ${data.fecha}</a><br><br>
+                    <a><b>Dolar Oficial</b>: <br>Compra: ${data2.compra} <br>Venta: ${data2.venta} <br>Fecha: ${data2.fecha}</a><br><br>
+                    <a><b>Dolar Contado con liqui</b>: <br>Compra: ${data3.compra} <br>Venta: ${data3.venta} <br>Fecha: ${data3.fecha}</a><br><br>
+                    <a><b>Dolar Bolsa</b>: <br>Compra: ${data4.compra} <br>Venta: ${data4.venta} <br>Fecha: ${data4.fecha}</a><br><br>
+                    <a><b>Dolar Promedio</b>: <br>Compra: ${data5.compra} <br>Venta: ${data5.venta} <br>Fecha: ${data5.fecha}</a><br><br>
+                    <a><b>Dolar Turista</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br>
+                    <a><b>Riesgo Pais</b>: <br>Compra: ${data6.compra} <br>Venta: ${data6.venta} <br>Fecha: ${data6.fecha}</a><br><br>
                 </body>
             `)
 })
@@ -34,7 +49,7 @@ app.listen(port, () => {
     console.log("Server running on port " + port)
 })
 
-cron.schedule("*/30 * * * *", function(){
+cron.schedule("5,10,20,30,40,50 0-23 * * 1,2,3,4,5,6", function(){
     console.log("Tiempo cumplido, hora de publicar el tweet!")
     main()
 })
@@ -42,7 +57,6 @@ cron.schedule("*/30 * * * *", function(){
 async function main(){
     try {
         publishDolar()
-        console.log('Tweets publicados exitosamente')
      } catch (e) {
         console.log(e)
     }
@@ -57,7 +71,7 @@ async function publishDolar(){
         const data5  = await getDolarPromedioInfo()
         const data6  = await getRiesgoPaisInfo()
         const date = moment().tz(timezone).format('DD/MM/YYYY hh:mm');
-        const tweet = "Precio Del Dólar 🇦🇷" + "\n" + "#DolarBlue #DolarHoy #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.compra + " / " + "$" + data.venta + "\n" + "» Dólar Oficial: " + "$" + data2.compra + " / " + "$" + data2.venta + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Riesgo País: " + data6.valor + "\n" + "\n" + "» Fecha: " + date
+        const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.compra + " / " + "$" + data.venta + "\n" + "» Dólar Oficial: " + "$" + data2.compra + " / " + "$" + data2.venta + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Riesgo País: " + data6.valor + "\n" + "\n" + "» Fecha: " + date
         //const tweet = "💸 " + "Dolar Blue:" + "\n" + "Compra: " + data.compra + "\n" + "Venta: " + data.venta + "\n" + "\n" + "💸 " + "Dolar Oficial:" + "\n" + "Compra: " + data2.compra + "\n" + "Venta: " + data2.venta + "\n" + "\n"+ "💸 " + "Contado con liqui:" + "\n" + "Compra: " + data3.compra + "\n" + "Venta: " + data3.venta + "\n" + "\n" + "💸 " + "Dolar Bolsa:" + "\n" + "Compra: " + data4.compra + "\n" + "Venta: " + data4.venta + "\n" + "\n"+ "💸 " + "Dolar Promedio:" + "\n" + "Compra: " + data5.compra + "\n" + "Venta: " + data5.venta + "\n" + "\n"+ "💣 " + "Riesgo País:" + "\n" + "Puntos: " + data6.valor
         await postTweet(tweet)
     }
@@ -119,6 +133,16 @@ async function getDolarPromedioInfo(){
 async function getRiesgoPaisInfo(){
     try {
         const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/riesgopais')
+        return res.data
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
+async function getDolarTurista(){
+    try {
+        const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolarturista')
         return res.data
     }
     catch (e) {
