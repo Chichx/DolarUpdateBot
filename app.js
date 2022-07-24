@@ -49,7 +49,7 @@ app.listen(port, () => {
     console.log("Server running on port " + port)
 })
 
-cron.schedule("5,10,20,30,40,50 0-23 * * 1,2,3,4,5,6", function(){
+cron.schedule("10,20,30,40,50 7-22 * * 1,2,3,4,5,6", function(){
     console.log("Tiempo cumplido, hora de publicar el tweet!")
     main()
 })
