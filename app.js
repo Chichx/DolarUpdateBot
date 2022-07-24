@@ -40,7 +40,7 @@ app.get('/', async function(req, res) {
                     <a><b>Dolar Bolsa</b>: <br>Compra: ${data4.compra} <br>Venta: ${data4.venta} <br>Fecha: ${data4.fecha}</a><br><br>
                     <a><b>Dolar Promedio</b>: <br>Compra: ${data5.compra} <br>Venta: ${data5.venta} <br>Fecha: ${data5.fecha}</a><br><br>
                     <a><b>Dolar Turista</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br>
-                    <a><b>Riesgo Pais</b>: <br>Compra: ${data6.compra} <br>Venta: ${data6.venta} <br>Fecha: ${data6.fecha}</a><br><br>
+                    <a><b>Riesgo Pais</b>: <br>Valor: ${data6.valor} <br>Fecha: ${data6.fecha}</a><br><br>
                 </body>
             `)
 })
@@ -49,7 +49,7 @@ app.listen(port, () => {
     console.log("Server running on port " + port)
 })
 
-cron.schedule("10,20,30,40,50 7-22 * * 1,2,3,4,5,6", function(){
+cron.schedule("10,20,30,40,50,55 7-22 * * 1,2,3,4,5,6", function(){
     console.log("Tiempo cumplido, hora de publicar el tweet!")
     main()
 })
