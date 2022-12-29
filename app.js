@@ -26,7 +26,7 @@ app.get('/', async function(req, res) {
     const data4  = await getDolarBolsarInfo()
     const data5  = await getDolarPromedioInfo()
     const data6  = await getRiesgoPaisInfo()
-    const data7  = await getDolarTurista()
+    const data7  = await getDolarTarjeta()
                 res.send(`
                 <head>
                     <title>Chicho Dolar Bot - v1.0</title>
@@ -39,7 +39,7 @@ app.get('/', async function(req, res) {
                     <a><b>Dolar Contado con liqui</b>: <br>Compra: ${data3.compra} <br>Venta: ${data3.venta} <br>Fecha: ${data3.fecha}</a><br><br>
                     <a><b>Dolar Bolsa</b>: <br>Compra: ${data4.compra} <br>Venta: ${data4.venta} <br>Fecha: ${data4.fecha}</a><br><br>
                     <a><b>Dolar Promedio</b>: <br>Compra: ${data5.compra} <br>Venta: ${data5.venta} <br>Fecha: ${data5.fecha}</a><br><br>
-                    <a><b>Dolar Turista</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br>
+                    <a><b>Dolar Tarjeta</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br>
                     <a><b>Riesgo Pais</b>: <br>Valor: ${data6.valor} <br>Fecha: ${data6.fecha}</a><br><br>
                 </body>
             `)
@@ -82,7 +82,7 @@ async function publishDolar(){
 
 async function getDolarInfo(){
     try {
-       const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolarblue')
+       const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/blue')
        return res.data
     }
     catch (e) {
@@ -92,7 +92,7 @@ async function getDolarInfo(){
 
 async function getDolarOficialInfo(){
     try {
-       const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolaroficial')
+       const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/oficial')
        return res.data
     }
     catch (e) {
@@ -102,7 +102,7 @@ async function getDolarOficialInfo(){
 
 async function getDolarContadoliquiInfo(){
     try {
-       const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/contadoliqui')
+       const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/contadoliqui')
        return res.data
     }
     catch (e) {
@@ -112,7 +112,7 @@ async function getDolarContadoliquiInfo(){
 
 async function getDolarBolsarInfo(){
     try {
-       const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolarbolsa')
+       const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/bolsa')
        return res.data
     }
     catch (e) {
@@ -122,7 +122,7 @@ async function getDolarBolsarInfo(){
 
 async function getDolarPromedioInfo(){
     try {
-       const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolarpromedio')
+       const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/promedio')
        return res.data
     }
     catch (e) {
@@ -132,7 +132,7 @@ async function getDolarPromedioInfo(){
 
 async function getRiesgoPaisInfo(){
     try {
-        const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/riesgopais')
+        const res = await axios.get('https://dolarupdatebot.vercel.app/api/bcra/riesgopais')
         return res.data
     }
     catch (e) {
@@ -140,9 +140,9 @@ async function getRiesgoPaisInfo(){
     }
 }
 
-async function getDolarTurista(){
+async function getDolarTarjeta(){
     try {
-        const res = await axios.get('https://api-dolar-argentina.herokuapp.com/api/dolarturista')
+        const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/tarjeta')
         return res.data
     }
     catch (e) {
