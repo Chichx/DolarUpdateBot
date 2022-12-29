@@ -29,18 +29,215 @@ app.get('/', async function(req, res) {
     const data7  = await getDolarTarjeta()
                 res.send(`
                 <head>
-                    <title>Chicho Dolar Bot - v1.0</title>
-                <head>
+                    <title>Dolar Update Pagina - v2.0</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta name="title" content="Cotización del dolar!">
+                    <meta property="og:type" content="website">
+                    <meta property="og:site_name" content="@dolarupdate">
+                    <meta property="og:image"
+                      content="https://i.imgur.com/tpFifLb.jpeg">
+                    <meta property="og:title" content="Cotización del dolar!">
+                    <meta property="og:description"
+                      content="Contamos con la cotización del Dolar Blue, Oficial, Contado Con Liqui, Bolsa, Promedio, Tarjeta y el Valor de Riesgo de país. Tambien contamos con un conversor online de dolares!">
+                    <meta content="#f0f8ff" data-react-helmet="true" name="theme-color" />
+                    <meta property="twitter:title" content="@dolarupdate">
+                    <meta property="twitter:card" content="summary_large_image">
+                    <meta name="twitter:site" content="@dolarupdate">
+                    <meta name="twitter:creator" content="@dolarupdate">
+                    <meta name="author" content="Chicho#4281" />                    
+                    
+                    <style>
+                    body{
+                        margin: 0;
+                        padding: 0;
+                        background: #f0eeee;
+                        background-image: url(https://i.imgur.com/tpFifLb.jpeg);
+                    }
+
+                    .cuadro {
+                        margin: 1rem;
+                        padding: 1rem;
+                        border-radius: 3px;
+                        border: 1px solid rgba(0, 0, 0, 0.65);
+                        text-shadow: 0px 0px 5px rgb(255 255 255 / 75%);
+                        background-color: rgba(0, 0, 0, 0.5);
+                        float: left
+                    }
+
+                    h1 {
+                        font-size: 2.25rem;
+                        margin: 0.25rem;
+                        text-align: center;
+                    }
+                    
+                    h2 {
+                        font-size: 1.0rem;
+                    }
+                    
+                    input {
+                        border-radius: 2px;
+                        margin-left: 0.25rem;
+                        margin-right: 0.25rem;
+                        width: 75px;
+                        background-color:#010101;
+                        border: none;
+                        box-shadow: 0px 0px 20px #000000;
+                        height: 35px;
+                        color: white;
+                        text-align: center;
+                        -webkit-transition: all .2s ease-out;
+                        -moz-transition: all .2s ease-out;
+                        -ms-transition: all .2s ease-out;
+                        -o-transition: all .2s ease-out;
+                        transition: all .2s ease-out
+                    }
+                    
+                    ::placeholder {
+                        color: white;
+                    }
+                    
+                    input:focus {
+                        outline: none;
+                        box-shadow: 0px 0px 20px rgba(256, 256, 256, 0.5);
+                    }
+                    
+                    strong {
+                        font-weight: bolder;
+                        color:#6aa84f;
+                        text-decoration: underline;
+                    }
+                    
+                    .submit {
+                        margin: 1rem;
+                    }
+                    
+                    .submitBtn {
+                        text-transform: uppercase;
+                        background: linear-gradient(#000000, #001111);
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 2.5rem;
+                        color: #ffffff;
+                        padding: 1.25rem;
+                        padding-left: 3rem;
+                        padding-right: 3rem;
+                        cursor: pointer;
+                    
+                        -webkit-transition: all .5s ease-out;
+                        -moz-transition: all .5s ease-out;
+                        -ms-transition: all .5s ease-out;
+                        -o-transition: all .5s ease-out;
+                        transition: all .5s ease-out
+                    }
+                    
+                    .submitBtn:hover {
+                        filter:invert();
+                    }
+                    
+                    .pesos {
+                        margin: 0.5rem;
+                        padding: 0.5rem;
+                        border-radius: 3px;
+                        border: 1px solid rgba(0, 0, 0, 0.65);
+                        text-shadow: 0px 0px 5px rgba(256, 256, 256, 0.75);
+                        background-color: rgba(0, 0, 0, 0.5)
+                    }
+                    </style>
+                </head>
+
                 <body>
-                    <a href="https://twitter.com/dolarupdate">Chicho Dolar Bot</a> - v<b>1.0</b><br>
-                    <a>Creado por </a><a href="https://github.com/Chichx">Chicho</a><br><br><br>
-                    <a><b>Dolar blue:</b> <br>Compra: ${data.compra} <br>Venta: ${data.venta} <br>Fecha: ${data.fecha}</a><br><br>
-                    <a><b>Dolar Oficial</b>: <br>Compra: ${data2.compra} <br>Venta: ${data2.venta} <br>Fecha: ${data2.fecha}</a><br><br>
-                    <a><b>Dolar Contado con liqui</b>: <br>Compra: ${data3.compra} <br>Venta: ${data3.venta} <br>Fecha: ${data3.fecha}</a><br><br>
-                    <a><b>Dolar Bolsa</b>: <br>Compra: ${data4.compra} <br>Venta: ${data4.venta} <br>Fecha: ${data4.fecha}</a><br><br>
-                    <a><b>Dolar Promedio</b>: <br>Compra: ${data5.compra} <br>Venta: ${data5.venta} <br>Fecha: ${data5.fecha}</a><br><br>
-                    <a><b>Dolar Tarjeta</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br>
-                    <a><b>Riesgo Pais</b>: <br>Valor: ${data6.valor} <br>Fecha: ${data6.fecha}</a><br><br>
+
+                <script>
+
+function calcdolares() {
+
+    const conversor1 = document.getElementById('conversor1');
+    const conversor_title = document.getElementById('conversor-title');
+    let conversor = document.getElementById('conversor').value;
+    let d = document.getElementById("decision").value;
+    if (d=="dolar blue")
+    valor12 = conversor*${data.venta};
+    if(d=="dolar oficial")
+    valor12 = conversor*${data2.venta}
+    if(d=="dolar contado con liqui")
+    valor12 = conversor*${data3.venta};
+    if(d=="dolar tarjeta")
+    valor12 = conversor*${data7.venta};
+    if(d=="dolar promedio")
+    valor12 = conversor*${data5.venta}
+
+    let num = valor12
+    let valor1 = num.toLocaleString("en-US");
+
+    if (!conversor) {
+        conversor_title.innerHTML = 'ERROR:';
+        conversor1.innerHTML = 'Especifica el monto que quieres convertir.'
+        return;
+    } else if (isNaN(valor12)) {
+        conversor_title.innerHTML = 'ERROR:';
+        conversor1.innerHTML = 'Los puntos deben estar expresados con números, no letras. En caso de ser decimales usar "." y no ",".';
+        return;
+    }
+
+    function isNaN(x) {
+        return x !== x;
+    };
+
+    conversor_title.innerHTML = 'Tu monto en ' + d + ' (' + conversor + '):';
+    conversor1.innerText = 'A pesos argentinos es: ' + valor1;
+}; 
+</script>
+
+<center>
+<section>
+<div class="container">
+<div class="cuadro">
+    <div class="box">
+        <h1>Conversor de <strong>Dolares</strong>
+        !</h1>
+        <div id="dolares1">
+            <div class="dolares">
+                <h2 style="text-transform: uppercase;">Ingrese el monto e elija el tipo de dolar!</h2>
+                <select id="decision">
+                <option value="dolar blue">Dolar Blue</option>
+                <option value="dolar oficial">Dolar oficial</option>
+                <option value="dolar contado con liqui">Dolar Contado con liqui</option>
+                <option value="dolar tarjeta">Dolar Tarjeta</option>
+                <option value="dolar promedio">Dolar Promedio</option>
+            </select>
+                <input type="text" placeholder="***" id="conversor">
+            </div>
+        </div>
+
+        <div class="submit">
+            <button class="submitBtn" onclick="calcdolares()">Calcular</button>
+        </div>
+
+        <div class="pesos">
+            <h2 id="conversor-title" style="text-transform: uppercase;"></h2>
+            <p id="conversor1">Aún no se ha convertido ningun monto.</p>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+</center>
+
+
+                    <div class="cuadro">
+                    <a><b>Dolar Blue:</b> <br>Compra: ${data.compra} <br>Venta: ${data.venta} <br>Fecha: ${data.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Dolar Oficial</b>: <br>Compra: ${data2.compra} <br>Venta: ${data2.venta} <br>Fecha: ${data2.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Dolar Contado con liqui</b>: <br>Compra: ${data3.compra} <br>Venta: ${data3.venta} <br>Fecha: ${data3.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Dolar Bolsa</b>: <br>Compra: ${data4.compra} <br>Venta: ${data4.venta} <br>Fecha: ${data4.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Dolar Promedio</b>: <br>Compra: ${data5.compra} <br>Venta: ${data5.venta} <br>Fecha: ${data5.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Dolar Tarjeta</b>: <br>Compra: ${data7.compra} <br>Venta: ${data7.venta} <br>Fecha: ${data7.fecha}</a><br><br></div>
+                    <div class="cuadro">
+                    <a><b>Riesgo Pais</b>: <br>Valor: ${data6.valor} <br>Fecha: ${data6.fecha}</a><br><br></center></div>
                 </body>
             `)
 })
@@ -71,7 +268,7 @@ async function publishDolar(){
         const data5  = await getDolarPromedioInfo()
         const data6  = await getRiesgoPaisInfo()
         const date = moment().tz(timezone).format('DD/MM/YYYY hh:mm');
-        const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.compra + " / " + "$" + data.venta + "\n" + "» Dólar Oficial: " + "$" + data2.compra + " / " + "$" + data2.venta + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Riesgo País: " + data6.valor + "\n" + "\n" + "» Fecha: " + date
+        const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.compra + " / " + "$" + data.venta + "\n" + "» Dólar Oficial: " + "$" + data2.compra + " / " + "$" + data2.venta + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Riesgo País: " + data6.valor + "\n" + "\n" + "» Fecha: " + data.fecha
         //const tweet = "💸 " + "Dolar Blue:" + "\n" + "Compra: " + data.compra + "\n" + "Venta: " + data.venta + "\n" + "\n" + "💸 " + "Dolar Oficial:" + "\n" + "Compra: " + data2.compra + "\n" + "Venta: " + data2.venta + "\n" + "\n"+ "💸 " + "Contado con liqui:" + "\n" + "Compra: " + data3.compra + "\n" + "Venta: " + data3.venta + "\n" + "\n" + "💸 " + "Dolar Bolsa:" + "\n" + "Compra: " + data4.compra + "\n" + "Venta: " + data4.venta + "\n" + "\n"+ "💸 " + "Dolar Promedio:" + "\n" + "Compra: " + data5.compra + "\n" + "Venta: " + data5.venta + "\n" + "\n"+ "💣 " + "Riesgo País:" + "\n" + "Puntos: " + data6.valor
         await postTweet(tweet)
     }
