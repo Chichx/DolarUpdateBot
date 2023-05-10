@@ -156,9 +156,9 @@ function calcdolares() {
     let conversor = document.getElementById('conversor').value;
     let d = document.getElementById("decision").value;
     if (d=="dolar blue")
-    valor12 = conversor*${data.venta};
+    valor12 = conversor*${data.blue.value_sell};
     if(d=="dolar oficial")
-    valor12 = conversor*${data2.venta}
+    valor12 = conversor*${data2.oficial.value_sell}
     if(d=="dolar contado con liqui")
     valor12 = conversor*${data3.venta};
     if(d=="dolar tarjeta")
@@ -225,9 +225,9 @@ function calcdolares() {
 
 
                     <div class="cuadro">
-                    <a><b>Dolar Blue:</b> <br>Compra: ${data.compra} <br>Venta: ${data.venta} <br>Fecha: ${data.fecha}</a><br><br></div>
+                    <a><b>Dolar Blue:</b> <br>Compra: ${data.blue.value_buy} <br>Venta: ${data.blue.value_sell} <br>Fecha: ${data3.fecha}</a><br><br></div>
                     <div class="cuadro">
-                    <a><b>Dolar Oficial</b>: <br>Compra: ${data2.compra} <br>Venta: ${data2.venta} <br>Fecha: ${data2.fecha}</a><br><br></div>
+                    <a><b>Dolar Oficial</b>: <br>Compra: ${data2.oficial.value_buy} <br>Venta: ${data2.oficial.value_sell} <br>Fecha: ${data3.fecha}</a><br><br></div>
                     <div class="cuadro">
                     <a><b>Dolar Contado con liqui</b>: <br>Compra: ${data3.compra} <br>Venta: ${data3.venta} <br>Fecha: ${data3.fecha}</a><br><br></div>
                     <div class="cuadro">
@@ -267,8 +267,9 @@ async function publishDolar(){
         const data4  = await getDolarBolsarInfo()
         const data5  = await getDolarPromedioInfo()
         const data6  = await getRiesgoPaisInfo()
+        const data7  = await getDolarTurista()
         const date = moment().tz(timezone).format('DD/MM/YYYY hh:mm');
-        const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.blue.value_buy + " / " + "$" + data.blue.value_sell + "\n" + "» Dólar Oficial: " + "$" + data2.oficial.value_buy + " / " + "$" + data2.oficial.value_sell + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Riesgo País: " + data6.valor + "\n" + "\n" + "» Fecha: " + data3.fecha
+        const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.blue.value_buy + " / " + "$" + data.blue.value_sell + "\n" + "» Dólar Oficial: " + "$" + data2.oficial.value_buy + " / " + "$" + data2.oficial.value_sell + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Dólar Turista: " + "$" + data7.compra + " / " + "$" + data7.venta + "\n" + "» Fecha: " + data3.fecha
         //const tweet = "💸 " + "Dolar Blue:" + "\n" + "Compra: " + data.compra + "\n" + "Venta: " + data.venta + "\n" + "\n" + "💸 " + "Dolar Oficial:" + "\n" + "Compra: " + data2.compra + "\n" + "Venta: " + data2.venta + "\n" + "\n"+ "💸 " + "Contado con liqui:" + "\n" + "Compra: " + data3.compra + "\n" + "Venta: " + data3.venta + "\n" + "\n" + "💸 " + "Dolar Bolsa:" + "\n" + "Compra: " + data4.compra + "\n" + "Venta: " + data4.venta + "\n" + "\n"+ "💸 " + "Dolar Promedio:" + "\n" + "Compra: " + data5.compra + "\n" + "Venta: " + data5.venta + "\n" + "\n"+ "💣 " + "Riesgo País:" + "\n" + "Puntos: " + data6.valor
         await postTweet(tweet)
     }
@@ -340,6 +341,16 @@ async function getRiesgoPaisInfo(){
 async function getDolarTarjeta(){
     try {
         const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/tarjeta')
+        return res.data
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
+async function getDolarTurista(){
+    try {
+        const res = await axios.get('https://dolarupdatebot.vercel.app/api/dolar/turista')
         return res.data
     }
     catch (e) {
