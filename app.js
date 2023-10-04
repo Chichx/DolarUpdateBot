@@ -270,7 +270,6 @@ async function publishDolar(){
         const data7  = await getDolarTurista()
         const date = moment().tz(timezone).format('DD/MM/YYYY hh:mm');
         const tweet = `Precio Del Dólar` + "\n" + "#DolarBlue #Dolar" + "\n" + "\n" + "» Dólar Blue: " + "$" + data.blue.value_buy + " / " + "$" + data.blue.value_sell + "\n" + "» Dólar Oficial: " + "$" + data2.oficial.value_buy + " / " + "$" + data2.oficial.value_sell + "\n" + "» Dólar Contado con liqui: " + "$" + data3.compra + " / " + "$" + data3.venta + "\n" + "» Dólar Bolsa: " + "$" + data4.compra + " / " + "$" + data4.venta + "\n" + "» Dólar Promedio: " + "$" + data5.compra + " / " + "$" + data5.venta + "\n" + "» Dólar Turista: " + "$" + data7.compra + " / " + "$" + data7.venta + "\n" + "» Fecha: " + data3.fecha
-        //const tweet = "💸 " + "Dolar Blue:" + "\n" + "Compra: " + data.compra + "\n" + "Venta: " + data.venta + "\n" + "\n" + "💸 " + "Dolar Oficial:" + "\n" + "Compra: " + data2.compra + "\n" + "Venta: " + data2.venta + "\n" + "\n"+ "💸 " + "Contado con liqui:" + "\n" + "Compra: " + data3.compra + "\n" + "Venta: " + data3.venta + "\n" + "\n" + "💸 " + "Dolar Bolsa:" + "\n" + "Compra: " + data4.compra + "\n" + "Venta: " + data4.venta + "\n" + "\n"+ "💸 " + "Dolar Promedio:" + "\n" + "Compra: " + data5.compra + "\n" + "Venta: " + data5.venta + "\n" + "\n"+ "💣 " + "Riesgo País:" + "\n" + "Puntos: " + data6.valor
         await postTweet(tweet)
     }
     catch (e) {
